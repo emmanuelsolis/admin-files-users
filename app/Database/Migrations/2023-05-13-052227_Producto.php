@@ -41,10 +41,12 @@ class Producto extends Migration
             'fk_id_category' => [
                 'type'       => 'INT',
                 'null'       => true,
+                'unsigned'   => true,
             ],
         ]);
         $this->forge->addKey('id_producto', true);
         $this->forge->createTable('t_producto');
+        $this->forge->addForeignKey('fk_id_category', 't_category', 'id');
     }
 
     public function down()
