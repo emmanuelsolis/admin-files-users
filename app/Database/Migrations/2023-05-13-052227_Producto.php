@@ -43,10 +43,16 @@ class Producto extends Migration
                 'null'       => true,
                 'unsigned'   => true,
             ],
+            'fk_id_owner' => [
+                'type'       => 'INT',
+                'constraint'     => 5,
+                'null'       => false,
+            ],
         ]);
         $this->forge->addKey('id_producto', true);
+        $this->forge->addForeignKey('fk_id_category', 't_category', 'id_category', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('fk_id_owner', 'usuarios_info', 'id_usuario', 'CASCADE', 'CASCADE');
         $this->forge->createTable('t_producto');
-        $this->forge->addForeignKey('fk_id_category', 't_category', 'id');
     }
 
     public function down()

@@ -59,3 +59,6 @@ $routes->get('/inicio', 'Home::inicio');
 $routes->post('/login', 'Home::login');
 $routes->get('/salir', 'Home::salir');
 $routes->get('/', 'Register::index');
+$routes->get('/lista-productos', 'Productos::index');
+$routes->get('/crear-producto', 'Productos::crear');
+$routes->post('productos/guardar', 'Productos::guardar');

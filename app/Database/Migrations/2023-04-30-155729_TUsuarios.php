@@ -14,14 +14,19 @@ class TUsuarios extends Migration
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
+                'null'           => false,
             ],
             'usuario' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
+                'unique'     => true,
+                'null'       => false,
             ],
             'email' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
+                'unique'     => true,
+                'null'       => false,
             ],
             'password' => [
                 'type'       => 'VARCHAR',
@@ -29,7 +34,7 @@ class TUsuarios extends Migration
             ],
             'rol' => [
                 'type'       => 'Int',
-                'constraint' => '12',
+                'constraint' => '5',
                 'null'       => false,
             ],
             'created_at' => [
@@ -46,8 +51,6 @@ class TUsuarios extends Migration
             ],
         ]);
         $this->forge->addKey('id_usuario', true);
-        $this->forge->addForeignKey('rol', 't_roles', 'id_rol', 'CASCADE', 'SET NULL');
-        $this->forge->addForeignKey('id_usuario', 'usuarios_info', 'id_usuario', 'CASCADE', 'CASCADE');
         $this->forge->createTable('t_usuarios');
     }
 

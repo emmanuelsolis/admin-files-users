@@ -14,7 +14,7 @@ class Group extends Migration
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
-                'null'           => false,
+                'null'           => true,
             ],
             'name_group' => [
                 'type'       => 'VARCHAR',

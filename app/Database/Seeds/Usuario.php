@@ -20,8 +20,7 @@ class Usuario extends Seeder
             'password' => $pasword,
             'rol'      => $rol
         ];
-
-       
+        
 
         // Using Query Builder
         $this->db->table('t_usuarios')->insert($data);
