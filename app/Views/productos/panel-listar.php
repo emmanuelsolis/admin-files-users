@@ -31,7 +31,7 @@
         <td><?=$producto['fk_id_category'];?></td>
         <td><?=$producto['prod_description'];?></td>
         <td>Editar</td>
-        <td>Borrar</td>
+        <td><a href="<?= base_url('borrar/'.$producto['id_producto'])?>" type="submit" class="btn btn-danger">Borrar</a></td>
       </tr>
         <?php  endforeach ?>
         <tr>

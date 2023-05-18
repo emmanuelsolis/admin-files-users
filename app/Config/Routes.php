@@ -62,3 +62,4 @@ $routes->get('/', 'Register::index');
 $routes->get('/lista-productos', 'Productos::index');
 $routes->get('/crear-producto', 'Productos::crear');
 $routes->post('productos/guardar', 'Productos::guardar');
+$routes->get('borrar/(:num)', 'Productos::borrar/$1');
