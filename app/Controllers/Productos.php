@@ -36,7 +36,7 @@ class Productos extends Controller
             $producto->insert($datos);
         }
         echo "Producto ingresado correctamente a la base de datos";
-        // return $this->response->redirect(site_url('/productos/panel-listar'));
+        return $this->response->redirect(site_url('lista-productos'));
     }
     public function borrar($id = null){
 
@@ -44,38 +44,32 @@ class Productos extends Controller
         echo "<br>";
         $producto = new ProductModel();
         $datosProducto = $producto->where('id_producto', $id)->first();
-        print_r($datosProducto);
-        $ruta = '../../public/uploads/'.$datosProducto['prod_image'];
-        echo "<br>";
-        print_r($ruta);
-        unlink($ruta);
-        $producto->where('id_producto', $id)->delete($id);
-        return $this->response->redirect(site_url('/productos/panel-listar'));
-        // if($datosProducto){
-        //     $ruta = '../../public/uploads/'.$datosProducto['prod_image'];
-
-        //     if(file_exists($ruta)){
-
-        //         if(unlink($ruta)){
-        //             $producto->where('id_producto', $id)->delete($id);
-        //             return $this->response->redirect(site_url('/productos/panel-listar'));
-        //         }else {
-        //             echo "No se pudo eliminar el archivo";
-        //         }
-        //     } else {
-        //         echo "No se encontro el archivo";
-        //     }
-        // } else {
-        //     echo "No se encontro el producto";
-            
-        // }
-
-
-        // $data['producto'] = $producto->where('id_producto', $id)->delete($id);
+        // print_r($datosProducto);
         // $ruta = '../public/uploads/'.$datosProducto['prod_image'];
+        // echo "<br>";
+        // print_r($ruta);
         // unlink($ruta);
         // $producto->where('id_producto', $id)->delete($id);
-        // return $this->response->redirect(site_url('/productos/panel-listar'));
+        if($datosProducto){
+            $ruta = '../../public/uploads/'.$datosProducto['prod_image'];
+
+            if(file_exists($ruta)){
+                if(unlink($ruta)){
+                    $producto->where('id_producto', $id)->delete($id);
+                    return $this->response->redirect(site_url('/productos/panel-listar'));
+                }else {
+                   
+                    echo "No se pudo eliminar el archivo";
+                }
+            } else {
+                $producto->where('id_producto', $id)->delete($id);
+                return $this->response->redirect(site_url('/lista-productos'));
+                echo "No se encontro el archivo";
+            }
+        } else {
+            echo "No se encontro el producto";
+            
+        }
 
     }
 }
