@@ -44,12 +44,6 @@ class Productos extends Controller
         echo "<br>";
         $producto = new ProductModel();
         $datosProducto = $producto->where('id_producto', $id)->first();
-        // print_r($datosProducto);
-        // $ruta = '../public/uploads/'.$datosProducto['prod_image'];
-        // echo "<br>";
-        // print_r($ruta);
-        // unlink($ruta);
-        // $producto->where('id_producto', $id)->delete($id);
         if($datosProducto){
             $ruta = '../public/uploads/'.$datosProducto['prod_image'];
 
@@ -57,12 +51,9 @@ class Productos extends Controller
                     unlink($ruta);
                     $producto->where('id_producto', $id)->delete($id);
                     return $this->response->redirect(site_url('/lista-productos'));
-                
-                   
-                    
-                
+                    echo "Archivo eliminado correctamente";
             } else {
-                $producto->where('id_producto', $id)->delete($id);
+                // $producto->where('id_producto', $id)->delete($id);
                 return $this->response->redirect(site_url('/lista-productos'));
                 echo "No se pudo eliminar el archivo";
                 echo "No se encontro el archivo";
@@ -72,5 +63,46 @@ class Productos extends Controller
             
         }
 
+    }
+    public function editar($id = null)
+    {
+        $producto = new ProductModel();
+        $data['header'] = view('layout/header');
+        $data['footer'] = view('layout/footer');
+        $data['producto'] = $producto->where('id_producto', $id)->first();
+        return view('/productos/editar-producto', $data);
+    }
+    public function actualizar(){
+        $producto = new ProductModel();
+        $id = $this->request->getVar('id_producto');
+        $datosProducto = $producto->where('id_producto', $id)->first();
+        $nombre = $this->request->getVar('prod_name');
+        $descripcion = $this->request->getVar('prod_description');
+        $categoria = $this->request->getVar('fk_id_category');
+        $imagen = $this->request->getFile('prod_image');
+        if($imagen->getName() != ''){
+            $ruta = '../public/uploads/'.$datosProducto['prod_image'];
+            if(file_exists($ruta)){
+                unlink($ruta);
+            }
+            $newName = $imagen->getRandomName();
+            $imagen->move('../public/uploads', $newName);
+            $datos = [
+                'prod_name' => $nombre,
+                'prod_description' => $descripcion,
+                'prod_image' => $newName,
+                'fk_id_category' => $categoria
+            ];
+        } else {
+            $datos = [
+                'prod_name' => $nombre,
+                'prod_description' => $descripcion,
+                'fk_id_category' => $categoria
+            ];
+        }
+        $producto->where('id_producto', $id)->update($datos);
+
+        return $this->response->redirect(site_url('/lista-productos'));
+                        
     }
 }

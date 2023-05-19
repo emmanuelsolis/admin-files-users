@@ -63,3 +63,5 @@ $routes->get('/lista-productos', 'Productos::index');
 $routes->get('/crear-producto', 'Productos::crear');
 $routes->post('productos/guardar', 'Productos::guardar');
 $routes->get('borrar/(:num)', 'Productos::borrar/$1');
+$routes->get('editar/(:num)', 'Productos::editar/$1');
+$routes->post('producto/actualizar', 'Productos::actualizar');
