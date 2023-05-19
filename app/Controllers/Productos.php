@@ -51,19 +51,20 @@ class Productos extends Controller
         // unlink($ruta);
         // $producto->where('id_producto', $id)->delete($id);
         if($datosProducto){
-            $ruta = '../../public/uploads/'.$datosProducto['prod_image'];
+            $ruta = '../public/uploads/'.$datosProducto['prod_image'];
 
             if(file_exists($ruta)){
-                if(unlink($ruta)){
+                    unlink($ruta);
                     $producto->where('id_producto', $id)->delete($id);
-                    return $this->response->redirect(site_url('/productos/panel-listar'));
-                }else {
+                    return $this->response->redirect(site_url('/lista-productos'));
+                
                    
-                    echo "No se pudo eliminar el archivo";
-                }
+                    
+                
             } else {
                 $producto->where('id_producto', $id)->delete($id);
                 return $this->response->redirect(site_url('/lista-productos'));
+                echo "No se pudo eliminar el archivo";
                 echo "No se encontro el archivo";
             }
         } else {
