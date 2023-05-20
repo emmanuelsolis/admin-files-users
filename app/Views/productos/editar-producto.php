@@ -21,9 +21,9 @@
 
 <h1>Editar Producto</h1>
 <div class="prod_panel_container">
-    <form action="<?= site_url('producto/actualizar') ?>" method="post" enctype="multipart/form-data">
+    <form action="<?= site_url('actualizar-producto') ?>" method="post" enctype="multipart/form-data">
         <div class="title">
-            <input type="hidden" value="<?= $producto['id_producto'] ?>">
+            <input type="hidden"name="id_producto" value="<?=$producto['id_producto']?>">
         </div>
         <div class="form-group">
             <label for="nombre">Nombre del producto:</label>
