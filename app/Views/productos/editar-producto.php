@@ -21,7 +21,7 @@
 
 <h1>Editar Producto</h1>
 <div class="prod_panel_container">
-    <form action="<?= site_url('actualizar-producto') ?>" method="post" enctype="multipart/form-data">
+    <form action="<?= site_url('actualizar-producto/'.$producto['id_producto']) ?>" method="post" enctype="multipart/form-data">
         <div class="title">
             <input type="hidden"name="id_producto" value="<?=$producto['id_producto']?>">
         </div>
@@ -36,8 +36,10 @@
         <div class="form-group">
             <label for="categoria">Categoria del producto:</label>
             <input type="number" class="form-control" id="fk_id_category" value="<?= $producto['fk_id_category'] ?>" name="fk_id_category" />
-            <div class="form-file form-file-lg mb-3">
-                <img style="margin: 10px;" src="<?= base_url() ?>/uploads/<?= $producto['prod_image'] ?>" class="img-fluid" alt="<?= $producto['prod_name'] ?>">
+            <div class="form-file form-file-lg mb-3 mt-3">
+                <img 
+                src="<?= base_url('/uploads/'. $producto['prod_image']) ?>" 
+                class="img-fluid" alt="<?= $producto['prod_name'] ?>">
                 <input type="file" class="form-file-input" id="prod_image" name="prod_image">
                 <label class="form-file-label" for="imagen">
                     <span class="form-file-text">Choose file...</span>

@@ -50,7 +50,6 @@ class Productos extends Controller
         echo "<br>";
         $producto = new ProductModel();
         $datosProducto = $producto->where('id_producto', $id)->first();
-        print_r($datosProducto);
         if ($datosProducto) {
             $ruta = '../public/uploads/' . $datosProducto['prod_image'];
             d($ruta);
@@ -77,68 +76,34 @@ class Productos extends Controller
         $data['producto'] = $producto->where('id_producto', $id)->first();
         return view('/productos/editar-producto', $data);
     }
-    public function actualizar()
+    public function actualizar($id)
     {
         $producto = new ProductModel();
-        $datos = [
-            'prod_name' => $this->request->getVar('prod_name')
-        ];
-        $id = $this->request->getVar('id_producto');
-        $producto->update($id, $datos);
-        $validacion = $this->validate([
-            'prod_image' => [
-                'uploaded[prod_image]',
-                'mime_in[prod_image, prod_image/jpg, prod_image/jpeg, prod_image/png]',
-                'max_size[prod_image, 1024]',
-            ]
-        ]);
-        if ($validacion) {
-            if ($imagen = $this->request->getFile('prod_image')) {
-                $datosProducto=$producto->where('id_producto', $id)->first();
-                $ruta = '../public/uploads/' . $datosProducto['prod_image'];
-                d($ruta);
-                unlink($ruta);
+        $prod_item= $producto->find($id);
+        // echo $prod_item['prod_image'];
+        $file = $this->request->getFile('prod_image');
 
-                $newName = $imagen->getRandomName();
-                $imagen->move('../public/uploads/', $newName);
-
-                $datos = [
-                    'prod_image' => $newName
-                ];
-                d($datos);
-                $producto->update($id, $datos);
+        if($file->isValid() && !$file->hasMoved()) 
+        {
+            $old_img_name = $prod_item['prod_image'];
+            $route = "uploads/".$old_img_name;
+            if(file_exists($route)){
+                unlink($route);
             }
+            $newName = $file->getRandomName();
+            $file->move('../public/uploads', $newName);
         }
-        // $producto->where('id_producto', $id)->update($datos);
-        // return $this->response->redirect(site_url('/lista-productos'));
-        // $datosProducto = $producto->where('id_producto', $id)->first();
-        // $nombre = $this->request->getVar('prod_name');
-        // $descripcion = $this->request->getVar('prod_description');
-        // $categoria = $this->request->getVar('fk_id_category');
-        // $imagen = $this->request->getFile('prod_image');
-        // if($imagen->getName() != ''){
-        //     $ruta = '../public/uploads/'.$datosProducto['prod_image'];
-        //     if(file_exists($ruta)){
-        //         unlink($ruta);
-        //     }
-        //     $newName = $imagen->getRandomName();
-        //     $imagen->move('../public/uploads', $newName);
-        //     $datos = [
-        //         'prod_name' => $nombre,
-        //         'prod_description' => $descripcion,
-        //         'prod_image' => $newName,
-        //         'fk_id_category' => $categoria
-        //     ];
-        // } else {
-        //     $datos = [
-        //         'prod_name' => $nombre,
-        //         'prod_description' => $descripcion,
-        //         'fk_id_category' => $categoria
-        //     ];
-        // }
-        // $producto->where('id_producto', $id)->update($datos);
 
-        // return $this->response->redirect(site_url('/lista-productos'));
+        $datos = [
+            'prod_name' => $this->request->getVar('prod_name'),
+            'prod_description' => $this->request->getVar('prod_description'),
+            'prod_image' => $newName,
+            'fk_id_category' => $this->request->getVar('fk_id_category')
+        ];
 
+        $producto->update($id, $datos);
+        return $this->response->redirect(site_url('lista-productos'));
+    
     }
+
 }

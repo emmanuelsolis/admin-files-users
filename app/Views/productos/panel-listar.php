@@ -11,7 +11,7 @@
     }
     
 </style>
-  <table class="table table-bordered table-dark">
+  <table class="table table-bordered table-light">
     <thead>
       <tr>
         <th scope="col">#</th>
