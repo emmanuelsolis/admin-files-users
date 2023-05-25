@@ -106,7 +106,7 @@ transition: all 250ms ease-in-out 0s;
           <a class="nav-link active" aria-current="page" href="<?php echo base_url('/salir') ?>"><strong>Salir</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="<?=site_url('lista-productos')?>">Catálogo de Productos</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

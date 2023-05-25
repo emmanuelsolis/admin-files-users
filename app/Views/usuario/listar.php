@@ -13,7 +13,7 @@
     <table class="table table-bordered">
         <thead class="thead">
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">email</th>
                 <th scope="col">Contraseña</th>
@@ -24,7 +24,7 @@
         <tbody>
             <?php foreach ($usuarios as $usuario) : ?>
                 <tr>
-                    <td scope='row'>"<?= $usuario['id_usuario']; ?></td>
+                    <td scope='row'><?= $usuario['id_usuario']; ?></td>
                     <td><?= $usuario['usuario']; ?></td>
                     <td><?= $usuario['email']; ?></td>
                     <td><?= $usuario['password']; ?></td>
