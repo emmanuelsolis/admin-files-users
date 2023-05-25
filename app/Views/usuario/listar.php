@@ -17,17 +17,19 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">email</th>
                 <th scope="col">Contraseña</th>
+                <th scope="col">rol</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($usuarios as $usuario) : ?>
                 <tr>
-                    <td scope='row'>"<?= $usuario['id']; ?></td>
-                    <td><?= $usuario['nombre']; ?></td>
+                    <td scope='row'>"<?= $usuario['id_usuario']; ?></td>
+                    <td><?= $usuario['usuario']; ?></td>
                     <td><?= $usuario['email']; ?></td>
                     <td><?= $usuario['password']; ?></td>
-                    <td><a href="<?= base_url('edit/' . $usuario['id']) ?>" class="btn btn-primary">Editar</a> <a href="<?= base_url('eliminar/' . $usuario['id']); ?>" class="btn btn-danger">Eliminar</a></td>
+                    <td><?= $usuario['rol']; ?></td>
+                    <td><a href="<?= base_url('edit/' . $usuario['id_usuario']) ?>" class="btn btn-primary">Editar</a> <a href="<?= base_url('eliminar/' . $usuario['id_usuario']); ?>" class="btn btn-danger">Eliminar</a></td>
                 </tr>
             <?php endforeach; ?>
             <tr>

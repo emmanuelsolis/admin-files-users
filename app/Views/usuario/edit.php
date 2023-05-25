@@ -16,10 +16,10 @@
   <div class="card-body">
     <h5 class="card-title">Actualizar Datos</h5>
     <form class="row g-3 col-md-12 mx-auto" method="POST" action="<?= site_url('/actualizar') ?>">
-      <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
+      <input type="hidden" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>">
       <div class="col-md-12">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" value="<?= $usuario['nombre'] ?>" name="nombre">
+        <label for="usuario" class="form-label">Nombre</label>
+        <input type="text" class="form-control" value="<?= $usuario['usuario'] ?>" name="usuario">
       </div>
       <div class="col-md-12">
         <label for="email" class="form-label">Email</label>

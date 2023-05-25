@@ -11,7 +11,7 @@ class UserController extends Controller{
 
     public function index(){
         $usuario = new UserModel();
-        $data['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
+        $data['usuarios'] = $usuario->orderBy('id_usuario', 'ASC')->findAll();
         $data['header'] = view('layout/header');
         $data['footer'] = view('layout/footer');
         
@@ -26,16 +26,18 @@ class UserController extends Controller{
     public function guardar(){
         $usuario = new UserModel();
         $data = [
-            'nombre' => $this->request->getVar('nombre'),
+            'usuario' => $this->request->getVar('usuario'),
             'email' => $this->request->getVar('email'),
-            'password' => $this->request->getVar('password')
+            'password' => $this->request->getVar('password'),
+            'rol' => 'cliente'
         ];
+        
         $usuario->insert($data);
         return $this->response->redirect(site_url('/listar'));
     }
     public function borrar($id = null){
         $usuario = new UserModel();
-        $data['usuario'] = $usuario->where('id', $id)->delete($id);
+        $data['usuario'] = $usuario->where('id_usuario', $id)->delete($id);
         return $this->response->redirect(site_url('/listar'));
     }
     public function edit($id=null){
@@ -48,7 +50,7 @@ class UserController extends Controller{
     public function actualizar($id=null){
         $usuario = new UserModel();
         $data = [
-            'nombre' => $this->request->getVar('nombre'),
+            'nombre' => $this->request->getVar('usuario'),
             'email' => $this->request->getVar('email'),
             'password' => $this->request->getVar('password')
         ];

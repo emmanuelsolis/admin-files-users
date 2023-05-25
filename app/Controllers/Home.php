@@ -19,7 +19,7 @@ class Home extends Controller
     {
         $data['header'] = view('layout/header');
         $data['footer'] = view('layout/footer'); 
-        return view('inicio', $data);
+        return view('welcome_message', $data);
     }
     public function login()
     {

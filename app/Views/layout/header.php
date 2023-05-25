@@ -119,9 +119,10 @@ transition: all 250ms ease-in-out 0s;
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
+        
+        <?php
+        echo (session('rol') == 'admin' ? '<li class="nav-item"><a class="nav-link enabled" href="'.site_url('listar').'">Usuarios</a></li>' : '');
+        ?>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

@@ -22,10 +22,9 @@
 </style>
 <h1>Ingresa tus datos para registarte</h1>
 <div class="login__container col-3 ">
-<img src="<?php echo base_url('/public/img/selfie.png')?>" width="200px" height="200px" class="card-img-top" alt="Imagen del formulario registro">
-    <form action="<?php echo base_url('/register') ?>" method="POST">
+    <form action="<?php echo base_url('registro/guardar') ?>" method="post">
         <div class="mb-3">
-            <label for="name" class="form-label">Nombre de usuario</label>
+            <label for="usuario" class="form-label">Nombre de usuario</label>
             <input type="text" class="form-control" id="usuario" name="usuario" required>
         </div> 
         <div class="mb-3">
@@ -42,7 +41,6 @@
         </div>
         <div class="botones">
             <button type="submit" class="btn btn-primary mb-3 col-5">Registrar</button>
-            <a href="<?php echo base_url('/login')?>" class="btn btn-primary mb-3 col-5" tabindex="-1" role="button" aria-disabled="true">Login</a>
         </div>
     </form>
 </div>

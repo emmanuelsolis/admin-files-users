@@ -11,8 +11,8 @@
     <h5 class="card-title">Ingresa tus datos</h5>
     <form class="row g-3" method="POST" action="<?= site_url('/guardar') ?>">
       <div class="col-md-12">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" name="nombre">
+        <label for="usuario" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="usuario">
       </div>
       <div class="col-md-12">
         <label for="email" class="form-label">Email</label>
