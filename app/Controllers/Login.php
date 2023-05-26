@@ -67,7 +67,7 @@ class Login extends Controller
         $session = session();
         $data['header'] = view('layout/header');
         $data['footer'] = view('layout/footer');
-        return view('usuario/mi_cuenta', ['usuario' => $session->get('usuario'), 'header' => $data['header'], 'footer' => $data['footer']]);
+        return view('usuario/mi_cuenta', ['usuario' => $session->get('usuario'),'rol'=>$session->get('rol'), 'header' => $data['header'], 'footer' => $data['footer']]);
     }
     public function salir()
     {

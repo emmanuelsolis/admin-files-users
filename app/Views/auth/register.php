@@ -21,6 +21,8 @@
     }
 </style>
 <h1>Ingresa tus datos para registarte</h1>
+<div id="errorMessages"></div>
+
 <div class="login__container col-3 ">
     <form action="<?php echo base_url('registro/guardar') ?>" method="post">
         <div class="mb-3">
@@ -44,5 +46,5 @@
         </div>
     </form>
 </div>
-
+<script src="./validations.js"></script>
 <?= $footer ?>
